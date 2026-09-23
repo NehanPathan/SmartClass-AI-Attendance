@@ -11,58 +11,140 @@ https://smartclass-attendance.streamlit.app/
 
 ## 📌 About
 
-**SmartClass AI Attendance** is a smart classroom attendance management system designed to automate the traditional attendance process.
+**SmartClass AI Attendance** is an AI-based classroom attendance management system designed to automate the traditional attendance process.
 
-The system uses **facial recognition and voice recognition** to identify students and record their attendance, reducing manual effort and making classroom attendance faster and more convenient.
+The system combines **face recognition** and **voice recognition** to verify students and record their attendance. It also provides class creation, QR-based class joining, student management, and attendance tracking through an interactive Streamlit interface.
+
+The project is designed as an academic/educational project to demonstrate the practical use of **AI, biometric recognition, and cloud-based data management** in classroom environments.
 
 ---
 
 ## ✨ Features
 
-- 🎭 **Face Recognition** — Identify students using facial features.
-- 🎙️ **Voice Recognition** — Use voice as an additional identity verification method.
-- 📋 **Automatic Attendance** — Record attendance automatically after successful verification.
-- 👨‍🎓 **Student Management** — Register and manage student information.
-- 📊 **Attendance Records** — Maintain and view attendance history.
-- 📱 **QR Code Class Joining** — Students can join a class using a unique class code or QR code.
-- ⚡ **Streamlit Interface** — Simple and interactive web-based UI.
+- 🎭 **Face Recognition**  
+  Identify and verify students using facial features.
+
+- 🎙️ **Voice Recognition**  
+  Verify students using voice embeddings.
+
+- 📋 **Automatic Attendance**  
+  Record attendance after successful identity verification.
+
+- 👨‍🎓 **Student Management**  
+  Manage student registration and class enrollment.
+
+- 🏫 **Class Management**  
+  Create and manage classroom sessions.
+
+- 📱 **QR Code Class Joining**  
+  Students can join a class using a unique class code or QR code.
+
+- 📊 **Attendance Records**  
+  Store and manage student attendance history.
+
+- ☁️ **Cloud Database**  
+  Use Supabase for storing application data.
+
+- 🔐 **Authentication & Security**  
+  Password hashing and authentication using bcrypt.
+
+- ⚡ **Interactive Web Interface**  
+  Built with Streamlit for a simple and responsive user experience.
+
+---
+
+## 🧠 AI Components
+
+### Face Recognition
+
+The face-recognition component uses:
+
+- `dlib-bin`
+- `face_recognition_models`
+- `scikit-learn`
+
+The system uses facial features to identify registered students during attendance.
+
+### Voice Recognition
+
+The voice-recognition component uses:
+
+- `librosa`
+- `resemblyzer`
+
+Voice recordings are processed to generate voice embeddings that can be used for student verification.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend / UI
-- Streamlit
-
 ### Programming Language
+
 - Python
 
-### AI / ML
-- Face Recognition
-- Voice Recognition
-- Machine Learning
+### Frontend / UI
 
-### Other Libraries
-- Segno
+- Streamlit
+
+### Face Recognition
+
+- dlib
+- face_recognition_models
+- scikit-learn
+
+### Voice Recognition
+
+- Librosa
+- Resemblyzer
+
+### Data Processing
+
 - NumPy
-- OpenCV
 - Pandas
+
+### Database
+
+- Supabase
+
+### Authentication
+
+- bcrypt
+
+### Utilities
+
+- Segno
+- Pillow
 
 ---
 
-## 🏗️ Project Structure
+## 🏗️ Project Architecture
 
 ```text
-Smart_Class/
-│
-├── .streamlit/
-│   └── ...
-│
-├── src/
-│   ├── components/
-│   ├── ...
-│
-├── app.py
-├── requirements.txt
-├── README.md
-└── .gitignore
+                         ┌─────────────────────┐
+                         │      Streamlit      │
+                         │     Web Interface   │
+                         └──────────┬──────────┘
+                                    │
+                  ┌─────────────────┴─────────────────┐
+                  │                                   │
+                  ▼                                   ▼
+        ┌──────────────────┐                ┌──────────────────┐
+        │ Face Recognition │                │ Voice Recognition│
+        │                  │                │                  │
+        │ dlib             │                │ Librosa          │
+        │ Face Models      │                │ Resemblyzer      │
+        │ Scikit-learn     │                │ Voice Embeddings │
+        └────────┬─────────┘                └────────┬─────────┘
+                 │                                   │
+                 └────────────────┬──────────────────┘
+                                  ▼
+                         ┌─────────────────┐
+                         │    Attendance   │
+                         │    Processing   │
+                         └────────┬────────┘
+                                  │
+                                  ▼
+                         ┌─────────────────┐
+                         │     Supabase    │
+                         │     Database    │
+                         └─────────────────┘
